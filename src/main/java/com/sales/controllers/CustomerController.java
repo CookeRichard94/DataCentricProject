@@ -3,9 +3,12 @@ package com.sales.controllers;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +26,11 @@ public class CustomerController {
     {
         ArrayList<Customer> customers = customerService.getCustomers();
         m.addAttribute("customers", customers);
-        return "showCustomers";
+        return "/showCustomers";
     }
+	
+	@RequestMapping(value = "/addCustomer", method = RequestMethod.GET)
+	public String getCust(@ModelAttribute("custAdd") Customer c, HttpServletRequest h) {
+		return "addCustomer";
+	}
 }

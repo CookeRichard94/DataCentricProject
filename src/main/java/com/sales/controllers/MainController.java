@@ -31,20 +31,32 @@ public class MainController
     }// getBooks
     
     
-    
-    
-    
-    
-    
-    
-    
+    @RequestMapping(value = "/addBook", method = RequestMethod.GET)
+	public String getBook(@ModelAttribute("bookAdd") Book b, HttpServletRequest h) {
+		return "addBook";
+	}
     
     @RequestMapping(value="/addBook", method = RequestMethod.POST)
-    public String addBook(@Valid @ModelAttribute() Book newBook, BindingResult result,
+    public String addBook(@Valid @ModelAttribute("bookAdd") Book newBook, BindingResult result,
     		HttpServletRequest h, Model m) {
     	
+    	if (result.hasErrors()) {
+			return "addBook";
+		}
+    	else {
+			bookService.addBook(newBook);
+			
+			// re-populate the list
+			ArrayList<Book> books = bookService.getBooks();
+
+			// add books to the model
+			m.addAttribute("books", books);
+
+			// return to show books page
+			return "showBooks";
+			}
     	
-    	return "showBooks";
+    	
     }
 
 }// MainController
