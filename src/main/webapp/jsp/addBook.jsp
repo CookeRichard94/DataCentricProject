@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form modelAttribute="bookAdd" >
+	<form:form modelAttribute="bookAdd">
 		<h1>Add Book</h1>
-		<table >
+		<table>
 			<tr>
 				<td>Title:</td>
 				<td><form:input path="title"></form:input></td>

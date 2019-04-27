@@ -17,35 +17,31 @@ import com.sales.models.Book;
 import com.sales.services.BookService;
 
 @Controller
-public class MainController
-{
-    @Autowired
-    BookService bookService;
-    
-    @RequestMapping(value = "/showBooks", method = RequestMethod.GET)
-    public String getBooks(Model m)
-    {
-        ArrayList<Book> books = bookService.getBooks();
-        m.addAttribute("books", books);
-        return "showBooks";
-    }// getBooks
-    
-    
-    @RequestMapping(value = "/addBook", method = RequestMethod.GET)
+public class MainController {
+	@Autowired
+	BookService bookService;
+
+	@RequestMapping(value = "/showBooks", method = RequestMethod.GET)
+	public String getBooks(Model m) {
+		ArrayList<Book> books = bookService.getBooks();
+		m.addAttribute("books", books);
+		return "showBooks";
+	}// getBooks
+
+	@RequestMapping(value = "/addBook", method = RequestMethod.GET)
 	public String getBook(@ModelAttribute("bookAdd") Book b, HttpServletRequest h) {
 		return "addBook";
 	}
-    
-    @RequestMapping(value="/addBook", method = RequestMethod.POST)
-    public String addBook(@Valid @ModelAttribute("bookAdd") Book newBook, BindingResult result,
-    		HttpServletRequest h, Model m) {
-    	
-    	if (result.hasErrors()) {
+
+	@RequestMapping(value = "/addBook", method = RequestMethod.POST)
+	public String addBook(@Valid @ModelAttribute("bookAdd") Book newBook, BindingResult result, HttpServletRequest h,
+			Model m) {
+
+		if (result.hasErrors()) {
 			return "addBook";
-		}
-    	else {
+		} else {
 			bookService.addBook(newBook);
-			
+
 			// re-populate the list
 			ArrayList<Book> books = bookService.getBooks();
 
@@ -54,9 +50,8 @@ public class MainController
 
 			// return to show books page
 			return "showBooks";
-			}
-    	
-    	
-    }
+		}
+
+	}
 
 }// MainController

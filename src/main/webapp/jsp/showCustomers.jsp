@@ -22,7 +22,7 @@ th, td, table {
                       Loan Period: ${c.loanPeriod}
                       
                       
-                      <h3>${c.cName}'s Loan</h3>
+                      <h3>${c.cName}'sLoan</h3>
 		<table>
 			<tr>
 				<th>Loan ID</th>
@@ -30,17 +30,17 @@ th, td, table {
 				<th>Title</th>
 				<th>Author</th>
 			</tr>
-			
-				<i:forEach items="${c.loans}" var="loans">
+
+			<i:forEach items="${c.loans}" var="loans">
 				<tr>
-				<td>${loans.lid}</td>
-				<td>${loans.book.bid}</td>
-				<td>${loans.book.title}</td>
-				<td>${loans.book.author}</td>
+					<td>${loans.lid}</td>
+					<td>${loans.book.bid}</td>
+					<td>${loans.book.title}</td>
+					<td>${loans.book.author}</td>
 				</tr>
-				</i:forEach>
-				
-			
+			</i:forEach>
+
+
 		</table>
 	</c:forEach>
 
